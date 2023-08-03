@@ -17,6 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.zerock.ex2.security.filter.JWTCheckFilter;
 import org.zerock.ex2.security.handler.APILoginSuccessHandler;
 import org.zerock.ex2.security.handler.CustomAccessDeniedHandler;
+import org.zerock.ex2.security.handler.OAuthAPILoginSuccessHandler;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -49,6 +50,15 @@ public class CustomSecurityConfig {
 
         http.exceptionHandling(config -> {
             config.accessDeniedHandler(new CustomAccessDeniedHandler());
+        });
+
+        http.oauth2Client(config -> {
+
+        });
+
+        // 로그인 성공했을 때
+        http.oauth2Login(config -> {
+            config.successHandler(new OAuthAPILoginSuccessHandler());
         });
 
         // 세션/쿠키 사용 안함 api 서버에서 가장중요함

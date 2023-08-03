@@ -53,8 +53,13 @@ public class MemberDTO extends User implements OAuth2User {
         
         return map;
 
-
     }
+
+    // 카카오가 전달한 모든 정보를 세팅
+    public void setProps(Map<String, Object> map) {
+        
+    }
+
     // OAuth2User 처리시에 들어가는 메소드 
     @Override
     public Map<String, Object> getAttributes() {
